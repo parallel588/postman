@@ -1,0 +1,15 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to "Postman", root_path, class: "brand"
+      .container.nav-collapse
+        %ul.nav
+          %li.divider-vertical
+          %li= link_to t('mailers'), '#'
+          %li= link_to t('templates'), letter_templates_path
+          %li.divider-vertical
+          %li= link_to t('mail_servers'), mail_servers_path

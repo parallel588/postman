@@ -1,0 +1,26 @@
+.row
+  .span2
+    Test Mail Servert
+.row-fluid
+  .span1
+  .span10
+    = simple_form_for(resource, :url => send_test_mail_server_path(resource), :html => {:class => "form-horizontal", :method => :post}) do |form|
+      .control-group.string
+        %label.string.control-label
+          Email
+        .controls
+          = text_field_tag :email, "", :class => "input-xlarge"
+      %hr
+      %button.m-btn.blue-stripe
+        = t("views.common.send")
+      = link_to t(".cancel"), mail_servers_path, :class => "btn-link"
+  .span1
+%hr
+.row-fluid
+  .span2
+    Settings
+  .span10
+    - resource.settings.each do |k,v|
+      %ul
+        %li
+          = " #{k} : #{v}"

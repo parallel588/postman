@@ -1,0 +1,35 @@
+.row-fluid
+  .span10
+    %h4
+      Mail Servers
+  .span2
+    .btn-group
+      = link_to new_mail_server_path, :class => "btn btn-small dropdown-toggle", :data => {:toggle => 'dropdown'} do
+        Add new
+        %span.caret
+      %ul.dropdown-menu
+        %li= link_to 'Add new', new_mail_server_path, :class => "btn-small"
+        %li= link_to 'Add new (gmail)', new_mail_server_path(:template => :gmail), :class => "btn-small"
+
+.row-fluid
+  .span12
+
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th Name
+          %th
+      %body
+        - collection.each do  |item|
+          %tr
+            %td
+              %i.icon-globe
+              = item.name
+            %td
+              .btn-group
+                = link_to "Test", test_mail_server_path(item), :class => "btn btn-small"
+              .btn-group
+                = link_to "Edit",edit_mail_server_path(item), :class => "btn btn-small"
+                = link_to mail_server_path(item), :class => "btn btn-small", :method => :delete, :confirm => "Yes?" do
+                  %i.icon-trash
+                  Delete

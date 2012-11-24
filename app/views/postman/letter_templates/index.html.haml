@@ -1,0 +1,31 @@
+.row-fluid
+  .span10
+    %h4
+      Templates
+  .span2
+    = link_to "New", new_letter_template_path, :class => "btn btn-small"
+
+.row-fluid
+  .span12
+
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th Name
+          %th
+      %body
+        - collection.each do  |item|
+          %tr
+            %td
+              = link_to item.name, letter_template_path(item)
+            %td
+
+              .btn-group
+                = link_to "Test", "test_letter_template_path(item)", :class => "btn  btn-small"
+                = link_to "Attachments","letter_template_assets_path(item)", :class => "btn btn-small"
+                = link_to "Edit Content", "content_letter_template_path(item)", :class => "btn btn-small"
+              .btn-group
+                = link_to "Edit", edit_letter_template_path(item), :class => "btn btn-small"
+                = link_to letter_template_path(item), :class => "btn btn-small", :method => :delete, :confirm => "Yes?" do
+                  %i.icon-trash
+                  Delete

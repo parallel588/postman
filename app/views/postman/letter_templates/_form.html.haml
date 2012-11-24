@@ -1,0 +1,44 @@
+= form.input :name, :input_html => {:class => "input-xxlarge"}
+
+%hr
+.row-fluid
+  %div.control-group{:style => "height: 650px;"}
+    %legend
+      HTML Content
+    = form.text_area :html_content, :cols => 100, :rows => 5, :class => "input-xxlarge", :style => "width: 100%; height: 400px;"
+    #html_editor.content_editor
+
+.row-fluid
+  %div.control-group{:style => "height: 650px;"}
+    %legend
+      TEXT Content
+    = form.text_area :text_content, :cols => 100, :rows => 5, :class => "input-xxlarge", :style => "width: 100%; height: 400px;"
+    #text_editor.content_editor
+
+  :css
+    .content_editor {
+    width: 88%; height: 600px;
+    }
+
+  :javascript
+    $(function(){
+    var html_editor = ace.edit("html_editor");
+    html_editor.setTheme("ace/theme/twilight");
+    var HTMLMode = require("ace/mode/html").Mode;
+    html_editor.getSession().setMode(new HTMLMode());
+
+    var html_textarea = $('#letter_template_html_content').hide();
+    html_editor.getSession().setValue(html_textarea.val());
+    html_editor.getSession().on('change', function(){  html_textarea.val(html_editor.getSession().getValue());  });
+
+
+    var text_editor = ace.edit("text_editor");
+    text_editor.setTheme("ace/theme/twilight");
+    var TEXTMode = require("ace/mode/text").Mode;
+    text_editor.getSession().setMode(new TEXTMode());
+
+    var text_textarea = $('#letter_template_text_content').hide();
+    text_editor.getSession().setValue(text_textarea.val());
+    text_editor.getSession().on('change', function(){  text_textarea.val(html_editor.getSession().getValue());  });
+
+    });
